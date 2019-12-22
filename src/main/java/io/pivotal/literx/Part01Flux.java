@@ -1,11 +1,9 @@
 package io.pivotal.literx;
 
 import reactor.core.publisher.Flux;
-import reactor.core.scheduler.Scheduler;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Learn how to create Flux instances.
@@ -48,8 +46,7 @@ public class Part01Flux {
 		// TODO Create a Flux that emits increasing values from 0 to 9 each 100ms
 	Flux<Long> counter() {
 		return Flux.interval(Duration.ofMillis(100))
-				.limitRequest(10)
-				;
+				.limitRequest(10)				;
 	}
 
 }
