@@ -1,10 +1,11 @@
 package io.pivotal.literx;
 
-import java.time.Duration;
-
+import org.assertj.core.api.WithAssertions;
 import org.junit.Test;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
+
+import java.time.Duration;
 
 /**
  * Learn how to create Mono instances.
@@ -12,7 +13,7 @@ import reactor.test.StepVerifier;
  * @author Sebastien Deleuze
  * @see <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html">Mono Javadoc</a>
  */
-public class Part02MonoTest {
+public class Part02MonoTest implements WithAssertions {
 
 	Part02Mono workshop = new Part02Mono();
 
@@ -56,4 +57,11 @@ public class Part02MonoTest {
 				.verifyError(IllegalStateException.class);
 	}
 
+	@Test
+	public void monoJust() {
+		String expected = "Mono";
+		Mono<String> mono = Mono.just(expected);
+		String actual = mono.block();
+		assertThat(actual).isEqualTo(expected);
+	}
 }
